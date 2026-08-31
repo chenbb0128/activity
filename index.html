@@ -71,17 +71,18 @@
     .qr-image {
       display: block;
       flex: 0 0 auto;
-      width: 92px;
-      height: 92px;
+      width: 112px;
+      height: 112px;
       padding: 4px;
       border-radius: 10px;
       background: #fff;
       object-fit: contain;
     }
 
-    .qr-kicker { margin: 0; color: var(--accent); font-size: 12px; font-weight: 700; }
-    .qr-name { margin: 1px 0 2px; color: var(--accent-deep); font-size: 19px; font-weight: 700; }
-    .qr-note { margin: 0; color: var(--muted); font-size: 12px; }
+    .qr-kicker { margin: 0; color: var(--accent); font-size: 13px; font-weight: 700; }
+    .qr-name { margin: 1px 0 3px; color: var(--accent-deep); font-size: 23px; font-weight: 800; }
+    .qr-cta { display: flex; align-items: center; gap: 7px; margin: 0; color: #bd5a2d; font-size: 18px; font-weight: 800; line-height: 1.25; }
+    .qr-arrow { font-size: 27px; line-height: 1; }
 
     .eyebrow {
       margin: 0 0 5px;
@@ -237,7 +238,7 @@
     @media (max-width: 500px) {
       .page { padding: 10px 10px 28px; }
       .topbar { padding: 20px 16px 16px; }
-      .qr-image { width: 82px; height: 82px; }
+      .qr-image { width: 96px; height: 96px; }
       .toolbar { flex-wrap: wrap; }
       .search-wrap { flex-basis: 100%; }
       .toolbar button { flex: 1; }
@@ -256,7 +257,7 @@
           <div>
             <p class="qr-kicker">关注公众号</p>
             <p class="qr-name">泡泡消息所</p>
-            <p class="qr-note">点击关注公众号 · 也可扫码</p>
+            <p class="qr-cta"><span>点击直接关注公众号</span><span class="qr-arrow" aria-hidden="true">➜</span></p>
           </div>
         </a>
       </div>
