@@ -57,6 +57,17 @@
       background: linear-gradient(135deg, #f3fbf9, #eaf5f2);
     }
 
+    .qr-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .qr-link:hover .qr-name { text-decoration: underline; }
+
     .qr-image {
       display: block;
       flex: 0 0 auto;
@@ -240,12 +251,14 @@
   <main class="page">
     <header class="topbar">
       <div class="qr-banner">
-        <img class="qr-image" src="assets/p2.png" alt="公众号：泡泡消息所二维码">
-        <div>
-          <p class="qr-kicker">关注公众号</p>
-          <p class="qr-name">泡泡消息所</p>
-          <p class="qr-note">扫码获取更多信息</p>
-        </div>
+        <a class="qr-link" href="https://mp.weixin.qq.com/s/N3lGir2dHOM50JCjRbGrNg" target="_blank" rel="noopener noreferrer" aria-label="打开泡泡消息所公众号文章">
+          <img class="qr-image" src="assets/p2.png" alt="公众号：泡泡消息所二维码">
+          <div>
+            <p class="qr-kicker">关注公众号</p>
+            <p class="qr-name">泡泡消息所</p>
+            <p class="qr-note">点击查看公众号文章 · 也可扫码</p>
+          </div>
+        </a>
       </div>
       <p class="eyebrow">收藏版 · 公开信息整理</p>
       <h1>全部银行入口大全</h1>
