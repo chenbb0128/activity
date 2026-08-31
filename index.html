@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="全国纪念币预约银行入口整理页。页面仅提供公开信息，不收集个人信息。">
+  <title>全国纪念币预约银行入口大全</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1e2935;
+      --muted: #73808c;
+      --line: #e4eaec;
+      --page: #f3f7f7;
+      --card: #ffffff;
+      --accent: #3b7d72;
+      --accent-deep: #265d55;
+      --accent-soft: #e7f2f0;
+      --gold: #a66d20;
+      --gold-soft: #fff7e8;
+      --shadow: 0 12px 32px rgba(32, 75, 70, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 100% 0, rgba(184, 222, 213, 0.48), transparent 30rem),
+        linear-gradient(145deg, #f0f6f5 0%, #fbfcfb 58%, #edf5f3 100%);
+      font: 15px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    a { color: var(--accent-deep); }
+    button, input { font: inherit; }
+
+    .page { width: min(100%, 780px); margin: 0 auto; padding: 18px 14px 34px; }
+
+    .topbar {
+      padding: 23px 20px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow);
+    }
+
+    .qr-banner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 19px;
+      padding: 11px;
+      border: 1px solid #d9ebe7;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #f3fbf9, #eaf5f2);
+    }
+
+    .qr-image {
+      display: block;
+      flex: 0 0 auto;
+      width: 92px;
+      height: 92px;
+      padding: 4px;
+      border-radius: 10px;
+      background: #fff;
+      object-fit: contain;
+    }
+
+    .qr-kicker { margin: 0; color: var(--accent); font-size: 12px; font-weight: 700; }
+    .qr-name { margin: 1px 0 2px; color: var(--accent-deep); font-size: 19px; font-weight: 700; }
+    .qr-note { margin: 0; color: var(--muted); font-size: 12px; }
+
+    .eyebrow {
+      margin: 0 0 5px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    h1 { margin: 0; font-size: clamp(24px, 6vw, 34px); line-height: 1.25; }
+    .intro { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
+
+    .notice {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 12px 13px;
+      border: 1px solid #f0d9aa;
+      border-radius: 12px;
+      color: #7f5a20;
+      background: var(--gold-soft);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .notice strong { color: #72490d; }
+    .notice-icon { flex: 0 0 auto; font-size: 17px; }
+
+    .toolbar {
+      display: flex;
+      gap: 9px;
+      margin: 16px 0 12px;
+    }
+
+    .search-wrap { position: relative; flex: 1; }
+    .search-icon { position: absolute; top: 9px; left: 13px; color: #9aa7ad; pointer-events: none; }
+
+    #search {
+      width: 100%;
+      height: 42px;
+      padding: 0 13px 0 36px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      outline: 0;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59, 125, 114, 0.12); }
+
+    .toolbar button {
+      height: 42px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      color: var(--accent-deep);
+      background: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .toolbar button:hover { border-color: #b7d4cf; background: var(--accent-soft); }
+    .count { margin: 0 2px 10px; color: var(--muted); font-size: 13px; }
+
+    .bank-list { display: grid; gap: 10px; }
+
+    .bank-card {
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      background: var(--card);
+      box-shadow: 0 5px 17px rgba(32, 75, 70, 0.05);
+    }
+
+    .bank-card[hidden] { display: none; }
+
+    .bank-card summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 15px 16px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .bank-card summary::-webkit-details-marker { display: none; }
+    .bank-card summary:hover { background: #fbfdfd; }
+
+    .bank-heading { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .bank-index {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      color: var(--accent-deep);
+      background: var(--accent-soft);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .bank-name { font-size: 17px; font-weight: 700; }
+    .region { color: var(--muted); font-size: 12px; }
+    .chevron { color: #8da09e; transition: transform 160ms ease; }
+    details[open] .chevron { transform: rotate(180deg); }
+
+    .bank-body { padding: 0 16px 17px; border-top: 1px solid #f0f3f3; }
+    .entry { margin-top: 14px; }
+    .entry-title { margin: 0 0 5px; color: #53635f; font-size: 13px; font-weight: 700; }
+    .entry p { margin: 3px 0; color: #4e5e68; font-size: 14px; }
+
+    .url-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      word-break: break-all;
+    }
+
+    .url-line a { flex: 1; }
+    .empty { color: #9aa7ad !important; }
+    ol { margin: 4px 0 0; padding-left: 22px; color: #4e5e68; }
+    li { padding-left: 3px; }
+
+    .footer {
+      margin-top: 18px;
+      padding: 20px 16px;
+      border-radius: 16px;
+      color: #5e7772;
+      background: rgba(226, 240, 237, 0.9);
+      text-align: center;
+    }
+
+    .footer-label { font-size: 12px; letter-spacing: 0.14em; }
+    .account { margin-top: 3px; color: var(--accent-deep); font-size: 19px; font-weight: 700; }
+    .footer-note { margin: 5px 0 0; color: #7b9690; font-size: 12px; }
+    .no-result { display: none; padding: 28px 12px; color: var(--muted); text-align: center; }
+    .no-result.show { display: block; }
+
+    @media (max-width: 500px) {
+      .page { padding: 10px 10px 28px; }
+      .topbar { padding: 20px 16px 16px; }
+      .qr-image { width: 82px; height: 82px; }
+      .toolbar { flex-wrap: wrap; }
+      .search-wrap { flex-basis: 100%; }
+      .toolbar button { flex: 1; }
+      .bank-card summary { padding: 14px 13px; }
+      .bank-body { padding-right: 13px; padding-left: 13px; }
+      .bank-name { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="qr-banner">
+        <img class="qr-image" src="assets/p2.png" alt="公众号：泡泡消息所二维码">
+        <div>
+          <p class="qr-kicker">关注公众号</p>
+          <p class="qr-name">泡泡消息所</p>
+          <p class="qr-note">扫码获取更多信息</p>
+        </div>
+      </div>
+      <p class="eyebrow">收藏版 · 公开信息整理</p>
+      <h1>全部银行入口大全</h1>
+      <p class="intro">纪念币预约入口与操作路径 · 共 11 个承办银行/机构</p>
+      <div class="notice">
+        <div class="notice-icon" aria-hidden="true">ⓘ</div>
+        <div><strong>温馨提示：</strong>所有银行未到预约时间通常不能预约，大家可先收藏保存。跳转前请核对浏览器地址栏域名，不要在非官方页面填写身份证、银行卡、密码或验证码。</div>
+      </div>
+    </header>
+
+    <div class="toolbar" aria-label="筛选工具">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="search" type="search" placeholder="搜索银行或负责地区" autocomplete="off">
+      </div>
+      <button id="expand-all" type="button">全部展开</button>
+      <button id="collapse-all" type="button">全部收起</button>
+    </div>
+    <p class="count" id="count" aria-live="polite">显示 11 项</p>
+
+    <section class="bank-list" id="bank-list" aria-label="银行入口列表">
+      <details class="bank-card" open data-search="工商银行 北京 天津 山西 内蒙古 辽宁 吉林 上海 江苏 安徽 福建 江西 湖北 广东 深圳 四川 贵州 甘肃 宁夏 新疆 西藏">
+        <summary><span class="bank-heading"><span class="bank-index">01</span><span><span class="bank-name">工商银行</span><br><span class="region">负责地区：北京、天津、山西、内蒙古、辽宁、吉林、上海、江苏、安徽、福建、江西、湖北、广东（含深圳）、四川、贵州、甘肃、宁夏、新疆、西藏</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="url-line">复制以下网址，电脑浏览器打开：<a href="https://www.icbc.com.cn/ICBC/ICBCCOIN/coinorder.htm" target="_blank" rel="noopener noreferrer">https://www.icbc.com.cn/ICBC/ICBCCOIN/coinorder.htm</a></p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开中国工商银行 APP</li><li>登录后 APP - 首页 -「全部」进入</li><li>页面下拉，在「其他」找到「纪念币预约」</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="农业银行 天津 山西 辽宁 浙江 安徽 江西 山东 河南 湖北 湖南 广东 海南 四川 贵州 云南 西藏 青海 宁夏 新疆">
+        <summary><span class="bank-heading"><span class="bank-index">02</span><span><span class="bank-name">农业银行</span><br><span class="region">负责地区：天津、山西、辽宁、浙江、安徽、江西、山东、河南、湖北、湖南、广东、海南、四川、贵州、云南、西藏、青海、宁夏、新疆</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="url-line">复制以下网址，电脑浏览器打开：<a href="https://eapply.abchina.com/coin/" target="_blank" rel="noopener noreferrer">https://eapply.abchina.com/coin/</a></p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开中国农业银行 APP</li><li>登录后 APP - 首页 -「全部」进入</li><li>页面下拉，在「助手」找到「纪念币预约」</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="邮储银行 河北 内蒙古 辽宁 吉林 黑龙江 上海 江苏 安徽 福建 江西 河南 湖南 广东 深圳 广西 海南 贵州 重庆 青海 宁夏 新疆">
+        <summary><span class="bank-heading"><span class="bank-index">03</span><span><span class="bank-name">邮储银行</span><br><span class="region">负责地区：河北、内蒙古、辽宁、吉林、黑龙江、上海、江苏、安徽、福建、江西、河南、湖南、广东（含深圳）、广西、海南、贵州、重庆、青海、宁夏、新疆</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="url-line">复制以下网址，电脑浏览器打开：<a href="https://pbank.psbc.com/perbank/index.html?ZmFxVGFnPXBvc3RDb2lu" target="_blank" rel="noopener noreferrer">https://pbank.psbc.com/perbank/index.html?ZmFxVGFnPXBvc3RDb2lu</a></p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开邮储银行 APP</li><li>登录后 APP - 首页 -「全部」进入</li><li>页面下拉，在「网点」找到「纪念币预约」</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="中国银行 天津 河北 山西 辽宁 福建 河南 广西 西藏 重庆 甘肃">
+        <summary><span class="bank-heading"><span class="bank-index">04</span><span><span class="bank-name">中国银行</span><br><span class="region">负责地区：天津、河北、山西、辽宁、福建、河南、广西、西藏、重庆、甘肃</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="url-line">复制以下网址，电脑浏览器打开：<a href="https://cmcoins.boc.cn/BOC15_CoinSeller/welcome.html" target="_blank" rel="noopener noreferrer">https://cmcoins.boc.cn/BOC15_CoinSeller/welcome.html</a></p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开中国银行 APP</li><li>登录后 APP - 首页 - 底部「生活」</li><li>再点击上方的「纪念币预约」</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="建设银行 北京 内蒙古 辽宁 黑龙江 浙江 福建 河南 湖南 云南 西藏 陕西">
+        <summary><span class="bank-heading"><span class="bank-index">05</span><span><span class="bank-name">建设银行</span><br><span class="region">负责地区：北京、内蒙古、辽宁、黑龙江、浙江、福建、河南、湖南、云南、西藏、陕西</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="url-line">复制以下网址，电脑浏览器打开：<a href="http://www1.ccb.com/cn/jnb/subject/index.html" target="_blank" rel="noopener noreferrer">http://www1.ccb.com/cn/jnb/subject/index.html</a></p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开中国建设银行 APP</li><li>登录后 APP - 首页 -「更多」进入</li><li>下拉在「网点服务」找到「纪念币预约」</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="华夏银行 天津 山西 吉林 江苏 湖北 深圳 广西 海南 贵州 重庆 青海">
+        <summary><span class="bank-heading"><span class="bank-index">06</span><span><span class="bank-name">华夏银行</span><br><span class="region">负责地区：天津、山西、吉林、江苏、湖北、深圳、广西、海南、贵州、重庆、青海</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="url-line">复制以下网址，电脑浏览器打开：<a href="https://mcm.hxb.com.cn/p/coin/coinHomeWeb.html?publish_channel_id=006" target="_blank" rel="noopener noreferrer">https://mcm.hxb.com.cn/p/coin/coinHomeWeb.html?publish_channel_id=006</a></p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开华夏银行 APP</li><li>登录后 APP - 首页 -「更多」进入</li><li>在「投资理财」找到「纪念币预约」</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="交通银行 内蒙古 上海 浙江 江苏 安徽 山东 湖北 湖南 深圳 广西 陕西 青海 海南">
+        <summary><span class="bank-heading"><span class="bank-index">07</span><span><span class="bank-name">交通银行</span><br><span class="region">负责地区：内蒙古、上海、浙江、江苏、安徽、山东、湖北、湖南、深圳、广西、陕西、青海、海南</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="url-line">复制以下网址，电脑浏览器打开：<a href="http://www.bankcomm.com/BankCommSite/getDispatcherUrl.do?reqType=218" target="_blank" rel="noopener noreferrer">http://www.bankcomm.com/BankCommSite/getDispatcherUrl.do?reqType=218</a></p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开中国交通银行 APP</li><li>首页搜索「纪念币预约」直接进入</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="浦发银行 山西 吉林 湖北 深圳 广西 海南 西藏 青海">
+        <summary><span class="bank-heading"><span class="bank-index">08</span><span><span class="bank-name">浦发银行</span><br><span class="region">负责地区：山西、吉林、湖北、深圳、广西、海南、西藏、青海</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开浦发银行 APP</li><li>可以点首页纪念币 banner，或是首页搜索「纪念币预约」进入</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="徽商银行 安徽">
+        <summary><span class="bank-heading"><span class="bank-index">09</span><span><span class="bank-name">徽商银行</span><br><span class="region">负责地区：安徽</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="url-line">复制以下网址，用电脑浏览器打开：<a href="https://wxyh.hsbank.cc:10443/GATEWAYPZB-SERVER/index.html#/?_ChannleId=hsbank&type=123" target="_blank" rel="noopener noreferrer">https://wxyh.hsbank.cc:10443/GATEWAYPZB-SERVER/index.html#/?_ChannleId=hsbank&amp;type=123</a></p><p class="field-hint">也能进入徽商电脑端预约界面</p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开徽商银行 APP</li><li>登录后 APP - 首页 -「全部」进入</li><li>下拉「银行服务」找到「纪念币预约」</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="陕西农信 陕西">
+        <summary><span class="bank-heading"><span class="bank-index">10</span><span><span class="bank-name">陕西农信</span><br><span class="region">负责地区：陕西</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">电脑端</p><p class="empty">原文未提供入口</p></div>
+          <div class="entry"><p class="entry-title">APP 端操作</p><ol><li>手机打开陕西信合个人银行 APP</li><li>登录后 APP - 首页 -「全部」进入</li><li>在「助手」一栏找到「纪念币预约」</li></ol></div>
+        </div>
+      </details>
+
+      <details class="bank-card" data-search="湖南相关承办银行 湖南">
+        <summary><span class="bank-heading"><span class="bank-index">11</span><span><span class="bank-name">湖南相关承办银行</span><br><span class="region">负责地区：湖南</span></span></span><span class="chevron">⌄</span></summary>
+        <div class="bank-body">
+          <div class="entry"><p class="entry-title">微信端</p><p class="empty">待补充</p></div>
+          <div class="entry"><p class="entry-title">其他说明</p><p class="empty">原文未提供电脑端或 APP 端操作入口，建议以当地承办银行官方公告为准。</p></div>
+        </div>
+      </details>
+    </section>
+
+    <p class="no-result" id="no-result">没有找到匹配的银行或地区。</p>
+
+    <footer class="footer">
+      <div class="footer-label">更多信息</div>
+      <div class="account">公众号：泡泡消息所</div>
+      <p class="footer-note">本页面为公开信息整理，不代表任何银行或机构；入口有效性和预约安排请以官方公告为准。</p>
+    </footer>
+  </main>
+
+  <script>
+    const search = document.querySelector('#search');
+    const cards = [...document.querySelectorAll('.bank-card')];
+    const count = document.querySelector('#count');
+    const noResult = document.querySelector('#no-result');
+
+    function updateList() {
+      const keyword = search.value.trim().toLowerCase();
+      let visible = 0;
+      cards.forEach((card) => {
+        const matched = !keyword || card.dataset.search.toLowerCase().includes(keyword);
+        card.hidden = !matched;
+        if (matched) visible += 1;
+      });
+      count.textContent = `显示 ${visible} 项`;
+      noResult.classList.toggle('show', visible === 0);
+    }
+
+    search.addEventListener('input', updateList);
+    document.querySelector('#expand-all').addEventListener('click', () => cards.forEach((card) => { if (!card.hidden) card.open = true; }));
+    document.querySelector('#collapse-all').addEventListener('click', () => cards.forEach((card) => { if (!card.hidden) card.open = false; }));
+  </script>
+</body>
+</html>
